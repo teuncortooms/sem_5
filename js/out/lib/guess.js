@@ -17,7 +17,7 @@ export function startGuess(guess, displayTimeCallback) {
         throw new Error("Number too low.");
     if (guess > MAX_GUESS)
         throw new Error("Number too high.");
-    startTimer(displayTimeCallback);
+    runTimer(displayTimeCallback);
     guessCount++;
     if (guess < number)
         return -1;
@@ -27,11 +27,15 @@ export function startGuess(guess, displayTimeCallback) {
     stopTimer();
     return 0;
 }
-function startTimer(displayTimeCallback) {
+function runTimer(displayTimeCallback) {
     if (stoptime === true) {
+        resetTimer();
         stoptime = false;
         timerCycle(displayTimeCallback);
     }
+}
+function resetTimer() {
+    hr = min = sec = 0;
 }
 function stopTimer() {
     if (stoptime === false) {
@@ -56,19 +60,3 @@ function timerCycle(displayTimeCallback) {
         }, 1000);
     }
 }
-// // should not be part of this lib --> Angular will help there
-// function displayTime(element: HTMLElement) {
-//     let secString: string = sec.toString();
-//     let minString: string = min.toString();
-//     let hrString: string = hr.toString();
-//     if (sec < 10 || sec === 0) {
-//         secString = '0' + sec;
-//     }
-//     if (min < 10 || min === 0) {
-//         minString = '0' + min;
-//     }
-//     if (hr < 10 || hr === 0) {
-//         hrString = '0' + hr;
-//     }
-//     element.innerHTML = hrString + ':' + minString + ':' + secString;
-// }

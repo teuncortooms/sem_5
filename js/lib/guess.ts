@@ -23,7 +23,7 @@ export function startGuess(guess: number, displayTimeCallback: IDisplayTimerFunc
     if (guess < MIN_GUESS) throw new Error("Number too low.");
     if (guess > MAX_GUESS) throw new Error("Number too high.");
 
-    startTimer(displayTimeCallback);
+    runTimer(displayTimeCallback);
     guessCount++;
 
     if (guess < number) return -1;
@@ -34,11 +34,16 @@ export function startGuess(guess: number, displayTimeCallback: IDisplayTimerFunc
     return 0;
 }
 
-function startTimer(displayTimeCallback: IDisplayTimerFunction): void {
+function runTimer(displayTimeCallback: IDisplayTimerFunction): void {
     if (stoptime === true) {
+        resetTimer();
         stoptime = false;
         timerCycle(displayTimeCallback);
     }
+}
+
+function resetTimer() {
+    hr = min = sec = 0;
 }
 
 function stopTimer(): void {
@@ -63,9 +68,12 @@ function timerCycle(displayTimeCallback: IDisplayTimerFunction): void {
 
         displayTimeCallback({h: hr, m: min, s: sec});
 
+        // doubting whether this event belongs in the ui
         setTimeout(function(){
             timerCycle(displayTimeCallback);
         }, 1000);
     }
 }
+
+
 
