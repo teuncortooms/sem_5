@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercises</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- FLAG  -->
+    <div class="exercise">
+        <h1>1. Vlaggen maken</h1>
+        <div class="flag">
+            <div id="flag-top"></div>
+            <div id="flag-middle"></div>
+            <div id="flag-bottom"></div>
+        </div>
+    </div>
+
+    <!-- FORM  -->
+    <div class="exercise">
+        <h1>2. Reactie formulier</h1>
+        <div class="flexbox">
+            <div class="form-container">
+                <form id="message-form">
+                    <input id="name-input" type="text" placeholder="Name" required />
+                    <input id="email-input" type="email" placeholder="xxx@yyy.zzz" required />
+                    <textarea id="message-input" rows="10" cols="30" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div id="output-message"></div>
+        </div>
+    </div>
+
+    <!-- GUESSING GAME  -->
+    <div class="exercise">
+        <h1>3. Hoger / Lager</h1>
+        <div class="flexbox">
+            <div class="form-container">
+                <form id="guess-form">
+                    <input id="guess-input" type="number" required />
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div id="output-container">
+                <div id="guess-output"></div>
+                <div id="timer">00:00:00</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/out/main.js"></script>
+</body>
+
+</html>

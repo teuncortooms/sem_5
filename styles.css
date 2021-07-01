@@ -1,0 +1,56 @@
+.exercise {
+    padding: 0px 25px 50px 25px;
+    border-bottom: 1px solid;
+}
+
+.flag {
+    width: 100px;
+    height: 70px;
+}
+
+#flag-top {
+    background-color: red;
+    height: 33%;
+}
+
+#flag-middle {
+    background-color: white;
+    height: 33%;
+}
+
+#flag-bottom {
+    background-color: blue;
+    height: 33%;
+}
+
+.flexbox {
+    display: flex;
+}
+
+.form-container > form > * {
+    display: block;
+    margin: 10px;
+}
+
+#output-message {
+    background-color: blanchedalmond;
+    margin-left: 50px;
+    width: 400px;
+}
+
+#output-container {
+    margin-left: 50px;
+}
+
+#output-container > * {
+    display: block;
+}
+
+#output-highlow {
+    background-color: lightblue;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px; /* to v-align center */
+}
+
