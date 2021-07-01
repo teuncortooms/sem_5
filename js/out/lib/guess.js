@@ -10,14 +10,14 @@ let stoptime = true;
 function getNumber() {
     return Math.floor(Math.random() * MAX_GUESS) + MIN_GUESS;
 }
-export function startGuess(guess, element) {
+export function startGuess(guess, displayTimeCallback) {
     if (isNaN(guess))
         throw new Error("Not a number");
     if (guess < MIN_GUESS)
         throw new Error("Number too low.");
     if (guess > MAX_GUESS)
         throw new Error("Number too high.");
-    startTimer(element);
+    startTimer(displayTimeCallback);
     guessCount++;
     if (guess < number)
         return -1;
@@ -27,10 +27,10 @@ export function startGuess(guess, element) {
     stopTimer();
     return 0;
 }
-function startTimer(element) {
+function startTimer(displayTimeCallback) {
     if (stoptime === true) {
         stoptime = false;
-        timerCycle(element);
+        timerCycle(displayTimeCallback);
     }
 }
 function stopTimer() {
@@ -38,7 +38,7 @@ function stopTimer() {
         stoptime = true;
     }
 }
-function timerCycle(element) {
+function timerCycle(displayTimeCallback) {
     if (stoptime === false) {
         sec = sec + 1;
         if (sec === 60) {
@@ -50,25 +50,25 @@ function timerCycle(element) {
             min = 0;
             sec = 0;
         }
-        displayTime(element);
+        displayTimeCallback({ h: hr, m: min, s: sec });
         setTimeout(function () {
-            timerCycle(element);
+            timerCycle(displayTimeCallback);
         }, 1000);
     }
 }
-// should not be part of this lib --> Angular will help there
-function displayTime(element) {
-    let secString = sec.toString();
-    let minString = min.toString();
-    let hrString = hr.toString();
-    if (sec < 10 || sec === 0) {
-        secString = '0' + sec;
-    }
-    if (min < 10 || min === 0) {
-        minString = '0' + min;
-    }
-    if (hr < 10 || hr === 0) {
-        hrString = '0' + hr;
-    }
-    element.innerHTML = hrString + ':' + minString + ':' + secString;
-}
+// // should not be part of this lib --> Angular will help there
+// function displayTime(element: HTMLElement) {
+//     let secString: string = sec.toString();
+//     let minString: string = min.toString();
+//     let hrString: string = hr.toString();
+//     if (sec < 10 || sec === 0) {
+//         secString = '0' + sec;
+//     }
+//     if (min < 10 || min === 0) {
+//         minString = '0' + min;
+//     }
+//     if (hr < 10 || hr === 0) {
+//         hrString = '0' + hr;
+//     }
+//     element.innerHTML = hrString + ':' + minString + ':' + secString;
+// }

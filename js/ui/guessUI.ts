@@ -15,7 +15,7 @@ export function submitGuess(event: Event): void {
 
     try {
         const guess = parseGuessedInt();
-        const result = startGuess(guess, timer);
+        const result = startGuess(guess, displayTime);
         displayResult(result);
     }
     catch (error) {
@@ -49,23 +49,25 @@ function displayResult(result: number): void {
     output.innerHTML = message + " (" + guessCount + ")";
 }
 
-// function displayTime2(element: HTMLElement) {
-//     let secString: string = sec.toString();
-//     let minString: string = min.toString();
-//     let hrString: string = hr.toString();
+function displayTime(time: { h: number, m: number, s: number }) {
+    let secString: string = time.s.toString();
+    let minString: string = time.m.toString();
+    let hrString: string = time.h.toString();
 
-//     if (sec < 10 || sec === 0) {
-//         secString = '0' + sec;
-//     }
-//     if (min < 10 || min === 0) {
-//         minString = '0' + min;
-//     }
-//     if (hr < 10 || hr === 0) {
-//         hrString = '0' + hr;
-//     }
+    if (!timer) throw new Error("No timer element!");
 
-//     element.innerHTML = hrString + ':' + minString + ':' + secString;
-// }
+    if (time.s < 10 || time.s === 0) {
+        secString = '0' + time.s;
+    }
+    if (time.m < 10 || time.m === 0) {
+        minString = '0' + time.m;
+    }
+    if (time.h < 10 || time.h === 0) {
+        hrString = '0' + time.h;
+    }
+
+    timer.innerHTML = hrString + ':' + minString + ':' + secString;
+}
 
 
 form?.addEventListener("submit", submitGuess);
