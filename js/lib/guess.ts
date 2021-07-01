@@ -59,26 +59,28 @@ function timerCycle(element: HTMLElement): void {
 
         displayTime(element);
 
-        setTimeout("timerCycle()", 1000);
+        setTimeout(function(){
+            timerCycle(element);
+        }, 1000);
+    }
+}
+
+// should not be part of this lib --> Angular will help there
+function displayTime(element: HTMLElement) {
+    let secString: string = sec.toString();
+    let minString: string = min.toString();
+    let hrString: string = hr.toString();
+
+    if (sec < 10 || sec === 0) {
+        secString = '0' + sec;
+    }
+    if (min < 10 || min === 0) {
+        minString = '0' + min;
+    }
+    if (hr < 10 || hr === 0) {
+        hrString = '0' + hr;
     }
 
-    // should not be part of this lib --> Angular will help there
-    function displayTime(element: HTMLElement) {
-        let secString: string = sec.toString();
-        let minString: string = min.toString();
-        let hrString: string = hr.toString();
-
-        if (sec < 10 || sec === 0) {
-            secString = '0' + sec;
-        }
-        if (min < 10 || min === 0) {
-            minString = '0' + min;
-        }
-        if (hr < 10 || hr === 0) {
-            hrString = '0' + hr;
-        }
-
-        element.innerHTML = hrString + ':' + minString + ':' + secString;
-    }
+    element.innerHTML = hrString + ':' + minString + ':' + secString;
 }
 
