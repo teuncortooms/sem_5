@@ -18,9 +18,10 @@ export class WeatherService {
   }
 
   public getForecasts(): Observable<WeatherForecast[]> {
-    this.messageService.logMessage(`getting forecasts from ${this.weatherUrl}`);
+    this.messageService.logMessage(`fetching forecasts from ${this.weatherUrl}`);
     return this.http.get<WeatherForecast[]>(this.weatherUrl)
       .pipe(
+        tap(_ => this.messageService.logMessage('fetched forecasts')),
         catchError(this.handleError<WeatherForecast[]>('getForecasts', []))
       );
   }
@@ -30,6 +31,7 @@ export class WeatherService {
     return of(hero);
   }
 
+  
   /**
  * Handle Http operation that failed.
  * Let the app continue.
@@ -39,10 +41,7 @@ export class WeatherService {
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
+      console.error(error);
       this.messageService.logMessage(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.

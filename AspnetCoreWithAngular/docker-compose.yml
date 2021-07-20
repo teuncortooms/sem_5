@@ -12,6 +12,7 @@ services:
       dockerfile: WebAPI/Dockerfile
 
   # make sure to ng build first (does not work with ng serve)
+  # TODO: Get integration to work
   angularui:
     image: nginx:1.20.1-alpine
     container_name: angularui
