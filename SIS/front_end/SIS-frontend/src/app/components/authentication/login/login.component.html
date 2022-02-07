@@ -1,0 +1,34 @@
+<h1>Login</h1>
+
+<mat-card *ngIf="showError" class="alert">
+    <span [innerHTML]="errorMessage"></span>
+</mat-card>
+
+<form [formGroup]="form" novalidate (ngSubmit)="loginUser(form.value)">
+    <mat-form-field appearance="fill">
+        <mat-label>E-mail</mat-label>
+        <input matInput type="email" id="email" formControlName="email" class="form-control" autocomplete="on" />
+        <mat-error *ngIf="isInvalidControl('email') && hasError('email', 'email')">Voer een geldig e-mailadres in
+        </mat-error>
+        <mat-error *ngIf="isInvalidControl('email') && hasError('email', 'required')">E-mailadres is vereist</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label for="password">Wachtwoord</mat-label>
+        <input matInput type="password" id="password" formControlName="password" class="form-control"
+            autocomplete="new-password" />
+        <mat-error *ngIf="isInvalidControl('password') && hasError('password', 'required')">Wachtwoord is vereist
+        </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" type="submit" [disabled]="!form.valid">Login</button>
+</form>
+
+
+<div class="external-buttons">
+    <button mat-raised-button color="primary" type="button" (click)="loginWithGoogle()">Log in with Google</button>
+    <button mat-raised-button color="primary" type="button" (click)="loginWithMicrosoft()">Log in with Microsoft
+        AD</button>
+</div>
+
+<a class="registerHere" routerLink="/authentication/register">Klik hier om te registreren</a>

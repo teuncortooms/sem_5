@@ -1,0 +1,39 @@
+.header-row {
+  margin-top: 15px;
+  padding: 10px;
+  display: flex;
+  width: 100%;
+}
+
+.logo {
+  object-fit: contain;
+  margin-left: 40px;
+}
+
+.search-form.mat-form-field {
+  margin-right: 10%;
+  height: 20px;
+  font-size: 12px;
+}
+
+.mat-mini-fab {
+  background-color: rgb(231, 231, 231);
+  margin: 5px;
+}
+
+.mat-mini-fab .mat-icon {
+  color: #743e73a4;
+}
+
+.container {
+  display:flex;
+}
+
+.profile {
+  height: 40px;
+  margin: 5px 20px 0 5px;
+  cursor: pointer;
+}
+.icon-button{
+  color: #683265;
+}

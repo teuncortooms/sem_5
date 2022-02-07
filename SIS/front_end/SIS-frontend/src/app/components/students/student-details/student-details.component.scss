@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    place-content: flex-start !important;
+  }
+
+  .title {
+      margin-bottom: 30px;
+  }
+
+  .studentDetails {
+    width: 50%;
+    background-color: white;
+  }
+  
+  app-groups-list{
+    width: 50%;
+    background-color: white;
+  }

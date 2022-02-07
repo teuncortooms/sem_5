@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.buttons > * {
+  margin-left: 10px;
+}
+
+

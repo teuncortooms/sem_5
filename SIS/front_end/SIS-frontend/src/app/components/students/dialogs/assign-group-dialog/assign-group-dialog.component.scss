@@ -1,0 +1,12 @@
+.mat-dialog-content {
+  height: 90%;
+  place-content: flex-start !important;
+}
+
+.studentDetails {
+  width: 50%;
+}
+
+app-groups-table {
+  flex: 0 0 100%; /* Let it fill the entire space horizontally */
+}

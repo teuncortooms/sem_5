@@ -1,0 +1,20 @@
+<mat-form-field *ngIf="this.columnConfig?.editType == 'hasid'" class="selectpart" appearance="fill">
+  <mat-label>{{ this.parameters.editboxLabel }}</mat-label>
+  <input matInput type="text" readonly [value]="this.parameters.editboxValueDisplayCallback()" />
+  <button class="selectbutton" mat-raised-button color="accent" (click)="onOpenSelect()">Kies</button>
+  <br />
+</mat-form-field>
+
+<div class="groupHistory" *ngIf="this.columnConfig?.editType == 'list'">
+    <mat-label>{{ this.parameters.editboxLabel }}</mat-label>
+
+  <app-select-models-list #myList [models]="this.parameters.models" [data]="parameters" [selectedItemsEvent]="selectedItemsEvent">
+  </app-select-models-list>
+
+
+  <div class="groupManagementButtons">
+    <button mat-stroked-button color="basic" (click)="onUnassignClick()">Verwijder
+    </button>
+    <button mat-stroked-button color="basic" (click)="onAssignClick()">Selecteren</button>
+  </div>
+</div>

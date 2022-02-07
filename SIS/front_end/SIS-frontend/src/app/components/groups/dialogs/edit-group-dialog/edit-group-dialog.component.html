@@ -1,0 +1,62 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+
+<!-- Content -->
+<mat-dialog-content fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px">
+    <div class="classDetails" fxFlex="45%">
+        <h3 mat-dialog-title>Details</h3>
+
+        <form>
+            <mat-form-field appearance="fill">
+                <mat-label>Klas</mat-label>
+                <input matInput name="courseName" required [(ngModel)]="details.name" #name="ngModel">
+                <mat-error *ngIf="name.errors?.required">Naam is vereist.</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Periode</mat-label>
+                <input matInput name="period" required [(ngModel)]="details.period" #period="ngModel">
+                <mat-error *ngIf="period.errors?.required">Semester is vereist.</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Van</mat-label>
+                <input matInput name="startDate" required [matDatepicker]="picker1" [(ngModel)]="details.startDate" #startDate="ngModel">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+                <mat-error *ngIf="startDate.errors?.required">Startdatum is vereist.</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Tot</mat-label>
+                <input matInput name="endDate" required [matDatepicker]="picker2" [(ngModel)]="details.endDate" #endDate="ngModel">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+                <mat-error *ngIf="endDate > startDate">
+                    Einddatum is eerder dan startdatum.
+                </mat-error>
+                <mat-error *ngIf="endDate.errors?.required">Einddatum is vereist.</mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div class="studentsList" [hidden]="isNew">
+        <app-students-list #myList [models]="details?.students" [isEditMode]="true"></app-students-list>
+
+        <div class="studentManagementButtons">
+          <button mat-stroked-button color="basic" (click)="onUnassignClick()">
+            Studenten ontkoppelen
+          </button>
+          <button mat-stroked-button color="basic" (click)="onAssignClick()">
+            Studenten koppelen
+          </button>
+        </div>
+      </div>
+
+
+
+</mat-dialog-content>
+
+<!-- Buttons -->
+<mat-dialog-actions fxLayout fxLayout.xs="column" fxLayoutAlign="end" fxLayoutGap="10px">
+    <button mat-raised-button mat-dialog-close>Annuleren</button>
+    <div class="spacer"></div>
+    <button *ngIf="!isNew" mat-stroked-button color="accent" (click)="onDeleteButtonClick()">Klas verwijderen</button>
+    <button mat-raised-button color="accent" (click)="onSaveButtonClick()">Opslaan</button>
+</mat-dialog-actions>

@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Assign Groups</h2>
+
+<mat-dialog-content>
+    <app-groups-table #myTable></app-groups-table>
+</mat-dialog-content>
+
+<!-- Buttons -->
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>Annuleren</button>
+    <div class="spacer"></div>
+    <button mat-raised-button color="accent" (click)="assign()">Opslaan</button>
+</mat-dialog-actions>

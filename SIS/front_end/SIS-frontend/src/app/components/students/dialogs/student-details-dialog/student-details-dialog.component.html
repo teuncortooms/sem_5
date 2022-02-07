@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+
+<mat-dialog-content>
+    <div class="studentDetails">
+        <h3 mat-dialog-title>Details</h3>
+        <table>
+            <tr><td>Voornaam: </td><td>{{ details?.firstName }} </td></tr>
+            <tr><td>Achternaam: </td><td>{{ details?.lastName }} </td></tr>
+            <tr><td>E-mail: </td><td>{{ details?.email }} </td></tr>
+        </table>
+    </div>
+
+    <app-groups-list [models]="details?.groups" [current]="details?.currentGroup"></app-groups-list>
+
+</mat-dialog-content>
+
+<!-- Buttons -->
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>Terug</button>
+    <div class="spacer"></div>
+    <button mat-stroked-button color="accent" (click)="onDeleteButtonClick()">Student verwijderen</button>
+    <button mat-raised-button color="accent" (click)="openEditDialog()">Student bewerken</button>
+</mat-dialog-actions>

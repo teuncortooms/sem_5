@@ -1,0 +1,28 @@
+<div *ngIf="!models || !models?.length">
+  <p> Geen koppelingen. </p>
+</div>
+
+<mat-table #mytable *ngIf="models && models.length" [dataSource]="modelsSorted!" class="genericTable">
+
+  <ng-container matColumnDef="Select">
+    <mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+        [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()" (change)="selection.toggle(row)"
+        [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container *ngFor="let column of this.data.displayedColumns | keyvalue" [matColumnDef]="column.key">
+    <mat-header-cell *matHeaderCellDef > {{ column.value.displayName }} </mat-header-cell>
+    <mat-cell *matCellDef="let val">{{ column.value.callbackStringValue(val) }} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>

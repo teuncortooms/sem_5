@@ -1,0 +1,14 @@
+<h1 mat-dialog-title class="title">Mijn gegevens</h1>
+
+<div class="container">
+    <div class="studentDetails">
+        <h3 mat-dialog-title>Details</h3>
+        <table>
+            <tr><td>Voornaam: </td><td>{{ details?.firstName }} </td></tr>
+            <tr><td>Achternaam: </td><td>{{ details?.lastName }} </td></tr>
+        </table>
+    </div>
+
+    <app-groups-list [models]="details?.groups" [current]="details?.currentGroup"></app-groups-list>
+
+</div>

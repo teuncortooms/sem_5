@@ -1,0 +1,33 @@
+.mat-dialog-content {
+  height: 90%;
+  place-content: flex-start !important;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.groupHistory {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+// needed, because standard is overridden by .groupHistory
+[hidden] {
+  display: none !important;
+}
+
+app-groups-list {
+  width: 100%;
+}
+
+.groupManagementButtons {
+  margin-top: 20px;
+
+  * {
+    margin: 10px;
+  }
+}

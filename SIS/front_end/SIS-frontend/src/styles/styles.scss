@@ -1,0 +1,71 @@
+@use "~@angular/material" as mat;
+@use "/src/styles/fontys-theme" as fontys;
+@use "/src/styles/buttons" as button;
+@use "/src/styles/table" as table;
+@use "/src/styles/headers" as headers;
+
+// Include non-theme styles for core.
+@include mat.core();
+
+// Include theme styles for all components.
+@include mat.all-component-themes(fontys.$theme);
+
+// Include custom theme styles for components.
+@include button.defaults(fontys.$theme);
+@include table.defaults(fontys.$theme);
+@include headers.defaults(fontys.$theme);
+
+// OLD-SCHOOL CSS
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// HELPER
+.spacer {
+  flex: 1 1 auto;
+}
+
+// FORMS
+.search-form-field {
+  font-size: small;
+}
+
+// DIALOG
+.custom-dialog-container .mat-dialog-container {
+  padding: 8% 8% 8% 8%;
+  box-sizing: border-box;
+}
+
+// SNACKBAR
+.snackbar {
+  // position: fixed;
+  z-index: 999999999999999999 !important;
+}
+
+// TABLES
+.mat-row:hover {
+  cursor: pointer;
+}
+
+// SCROLLBAR
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 1px grey;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: lightgrey;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: grey;
+}

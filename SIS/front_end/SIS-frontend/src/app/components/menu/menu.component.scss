@@ -1,0 +1,23 @@
+.menu-button {
+    color: #673366b4;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 19px;
+    margin-top: 20px;
+    margin-left: 30px;
+    text-align: left;
+    height: 40px;
+    width: 190px;
+}
+
+mat-icon {
+    margin-right: 10px;
+    color: #673366b4;
+}
+
+.menu-button:hover{
+    border: 1px solid #673366;
+    border-radius: 8px;
+}

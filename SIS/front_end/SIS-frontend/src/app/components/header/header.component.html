@@ -1,0 +1,23 @@
+<div class="header-row">
+  <img src="assets\logo.png" class="logo" routerLink="" />
+
+  <span class="spacer"></span>
+
+  <button *ngIf="!isUserAuthenticated" mat-mini-fab class="mat-elevation-z0" aria-label="login"
+    routerLink="/authentication/login">
+    <mat-icon>login</mat-icon>
+  </button>
+
+  <div *ngIf="isUserAuthenticated" class="container">
+    <button mat-mini-fab class="mat-elevation-z0" aria-label="settings">
+      <mat-icon>settings</mat-icon>
+    </button>
+
+    <button mat-mini-fab class="mat-elevation-z0" aria-label="notifications">
+      <mat-icon>notifications</mat-icon>
+    </button>
+
+    <img [src]="photo" class="profile" routerLink="/authentication/details" />
+  </div>
+
+</div>

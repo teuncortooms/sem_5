@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+
+<mat-dialog-content>
+    <div class="classDetails">
+        <h3 mat-dialog-title>Details</h3>
+        <table style="border-collapse: collapse;">
+          <tr *ngFor="let column of this.config.retrieve().detailDialogColumns | keyvalue: unsorted" [matColumnDef]="column.key">
+            <td style="border-right: 3px solid #000;padding-right: 10px"> {{ column.value.displayName }} </td>
+            <td style="padding-left: 10px">{{ column.value.callbackStringValue(this.details!) }} </td>
+          </tr>
+        </table>
+    </div>
+
+</mat-dialog-content>
+
+<!-- Buttons -->
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>Terug</button>
+    <div class="spacer"></div>
+    <button *ngIf="this.canDelete" mat-stroked-button color="accent" (click)="onDeleteButtonClick()">{{ this.config.retrieve().entityDisplayNameSingular}} verwijderen</button>
+    <button *ngIf="this.canEdit" mat-raised-button color="accent" (click)="openEditDialog()">{{ this.config.retrieve().entityDisplayNameSingular}} bewerken</button>
+</mat-dialog-actions>

@@ -1,0 +1,46 @@
+<div>
+  <mat-form-field class="search-form-field">
+    <mat-label>Zoekfilter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input>
+  </mat-form-field>
+</div>
+
+<!-- Students table -->
+<mat-table #mytable [dataSource]="dataSource" matSort>
+
+  <!-- Select Column -->
+  <ng-container matColumnDef="Select" >
+    <mat-header-cell *matHeaderCellDef>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <mat-radio-button (change)="this.student = row"
+        [checked]="isSelected(row)">
+      </mat-radio-button>
+    </mat-cell>
+  </ng-container>
+
+
+  <!-- Firstname Column -->
+  <ng-container *ngFor="let column of this.data.displayedColumns | keyvalue" [matColumnDef]="column.key">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.value.displayName }} </mat-header-cell>
+    <mat-cell *matCellDef="let val">{{ column.value.callbackStringValue(val) }} </mat-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row matRipple *matRowDef="let row; columns: displayedColumns;" (click)="onSelection(row)">
+  </mat-row>
+
+  <div *matNoDataRow [hidden]="dataSource.loadingStream | async" class="no-data"><em>Geen items gevonden.</em></div>
+
+</mat-table>
+
+<div class="spinner-container" *ngIf="dataSource.loadingStream | async">
+  <div class="spinner_overlay"></div>
+  <mat-spinner></mat-spinner>
+</div>
+
+<mat-paginator [pageSize]="10" [pageIndex]="0" [pageSizeOptions]="[5, 10, 20]" [length]=0 showFirstLastButtons
+  #paginator aria-label="Select page">
+</mat-paginator>
+

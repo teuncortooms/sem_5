@@ -1,0 +1,31 @@
+<div *ngIf="!models || !models?.length">
+  <h3 mat-dialog-title>Studenten</h3>
+  <p> No students added yet. </p>
+</div>
+
+<mat-table #mytable *ngIf="models && models.length" [dataSource]="modelsSorted!">
+
+  <ng-container matColumnDef="select">
+    <mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+        [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+        [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="fullName">
+    <mat-header-cell *matHeaderCellDef>
+      <h3 mat-dialog-title>Studenten</h3>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let student">{{ student.fullName }} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>

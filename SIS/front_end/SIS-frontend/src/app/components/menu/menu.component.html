@@ -1,0 +1,36 @@
+<!-- Staff menu -->
+<div *ngIf="isUserAuthenticated && true">
+    <button *ngIf="menuConfig.home" mat-button class="menu-button" routerLink="/">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+    </button>
+    <button *ngIf="menuConfig.student" mat-button class="menu-button" routerLink="/student">
+        <mat-icon>school</mat-icon>
+        <span>Mijn gegevens</span>
+    </button>
+    <button *ngIf="menuConfig.students" mat-button class="menu-button" routerLink="/studenten">
+        <mat-icon>school</mat-icon>
+        <span>Studenten</span>
+    </button>
+    <button *ngIf="menuConfig.groups" mat-button class="menu-button" routerLink="/klassen">
+        <mat-icon>history_edunu</mat-icon>
+        <span>Klassen</span>
+    </button>
+    <button *ngIf="menuConfig.grades" mat-button class="menu-button" routerLink="/cijfers">
+        <mat-icon>signal_cellular_alt</mat-icon>
+        <span>Cijfers</span>
+    </button>
+    <button *ngIf="menuConfig.teachers" mat-button class="menu-button" routerLink="/docenten">
+        <mat-icon>badge</mat-icon>
+        <span>Docenten</span>
+    </button>
+    <button *ngIf="menuConfig.users" mat-button class="menu-button" routerLink="/gebruikers">
+        <mat-icon>supervised_user_circle</mat-icon>
+        <span>Gebruikers</span>
+      </button>
+      
+      <button *ngIf="menuConfig.roles" mat-button class="menu-button" routerLink="/rollen">
+        <mat-icon>groups</mat-icon>
+        <span>Rollen</span>
+      </button>
+</div>

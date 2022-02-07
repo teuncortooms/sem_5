@@ -1,0 +1,30 @@
+mat-table {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+mat-header-row,
+mat-row {
+  border: 0;
+  min-height: 30px;
+  height: fit-content;
+}
+
+.mat-row:hover {
+  background-color: inherit;
+  cursor: inherit;
+}
+
+.mat-column-Select {
+  max-width: 40px;
+}
+
+mat-header-cell,
+mat-cell {
+  margin-left: 0;
+  padding-left: 0;
+  white-space: nowrap;
+  align-items: flex-start;
+  flex: 1;
+}

@@ -1,0 +1,25 @@
+<div class="header">
+  <h1>Studenten</h1>
+  <span class="spacer"></span>
+
+  <div class="buttons">
+    <button mat-stroked-button color="accent" (click)="openAddDialog()">
+      Voeg een student toe <mat-icon>add</mat-icon>
+    </button>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="openAssignGroupDialog()">
+        <mat-icon>history_edunu</mat-icon> Klas toewijzen
+      </button>
+      <button mat-menu-item (click)="removeSelection()">
+        <mat-icon>delete</mat-icon> Verwijder selectie
+      </button>
+    </mat-menu>
+  </div>
+
+</div>
+
+<app-students-table #myTable (rowClickEvent)="openDetailsDialog($event)"></app-students-table>

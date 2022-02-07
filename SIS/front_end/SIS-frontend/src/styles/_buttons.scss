@@ -1,0 +1,13 @@
+@use "sass:map";
+@use "~@angular/material" as mat;
+
+@mixin defaults($theme) {
+  $typography-config: mat.get-typography-config($theme);
+  $color-config: mat.get-color-config($theme);
+  $accent-palette: map.get($color-config, "accent");
+
+  .mat-stroked-button.mat-accent {
+    border-color: mat.get-color-from-palette($accent-palette);
+    font-family: mat.font-family($typography-config);
+  }
+}

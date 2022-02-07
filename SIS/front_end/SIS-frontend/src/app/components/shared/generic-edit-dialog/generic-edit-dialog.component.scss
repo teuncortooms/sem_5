@@ -1,0 +1,29 @@
+.mat-dialog-content {
+  height: 90%;
+  place-content: flex-start !important;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+
+// needed, because standard is overridden by .studentsList
+[hidden] {
+  display: none !important;
+}
+
+app-select-model {
+  width: 100%;
+}
+
+.studentManagementButtons {
+  margin-top: 20px;
+
+  * {
+    margin: 10px;
+  }
+}

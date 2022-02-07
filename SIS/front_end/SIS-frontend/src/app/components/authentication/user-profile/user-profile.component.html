@@ -1,0 +1,13 @@
+<h1>Gebruiker Details</h1>
+
+<h2>Inlognaam</h2>
+<p>{{username}}</p>
+
+<h2>Rollen</h2>
+<p *ngFor="let role of roles">{{role}}</p>
+
+<h2>Permissies</h2>
+<p *ngFor="let claim of claims">{{ convertClaim(claim) }}</p>
+<button mat-stroked-button (click)="logout()">
+    Logout
+</button>

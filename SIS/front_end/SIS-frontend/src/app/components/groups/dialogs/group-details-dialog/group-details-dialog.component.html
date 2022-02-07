@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+
+<mat-dialog-content>
+    <div class="classDetails">
+        <h3 mat-dialog-title>Details</h3>
+        <table>
+            <tr><td>Klas: </td><td>{{ details?.name }} </td></tr>
+            <tr><td>Periode: </td><td>{{ details?.period }} </td></tr>
+            <tr><td>Van: </td><td>{{ details?.startDate | date:'mediumDate' }} </td></tr>
+            <tr><td>Tot: </td><td>{{ details?.endDate | date:'mediumDate' }} </td></tr>
+        </table>
+    </div>
+
+    <app-students-list [models]="details?.students"></app-students-list>
+
+</mat-dialog-content>
+
+<!-- Buttons -->
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>Terug</button>
+    <div class="spacer"></div>
+    <button mat-stroked-button color="accent" (click)="onDeleteButtonClick()">Klas verwijderen</button>
+    <button mat-raised-button color="accent" (click)="openEditDialog()">Klas bewerken</button>
+</mat-dialog-actions>

@@ -1,0 +1,64 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+
+<!-- Content -->
+<mat-dialog-content fxLayout fxLayout.xl="column" fxLayoutAlign="center" fxLayoutGap="10px">
+    <div class="classDetails" fxFlex="45%">
+        <h3 mat-dialog-title>Details</h3>
+
+        <form>
+          <!--
+            <app-select-model [model]="details.student" [parameters]="this.studentBoxParameters"></app-select-model>
+            <app-select-model [model]="details.group" [parameters]="this.groupBoxParameters"></app-select-model>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Cijfer</mat-label>
+              <input matInput name="score" required [(ngModel)]="details.score" #period="ngModel">
+          </mat-form-field>
+        -->
+        <table style="border-collapse: collapse;">
+          <tr *ngFor="let column of this.config.retrieve().detailDialogColumns | keyvalue: unsorted" [matColumnDef]="column.key">
+            <!--<td style="border-right: 3px solid #000;padding-right: 10px"> {{ column.value.displayName }} </td>-->
+            <td *ngIf="matchtype(column, 'string')"
+            style="padding-left: 10px">
+              <mat-form-field appearance="fill">
+                <mat-label>{{ column.value.displayName }}</mat-label>
+                <input matInput name="{{ column.key }}" required [type]="textOrPassword(column)"
+                  (change)="triggerchangefield(column,$event)" [value]="retrievevalue(column)">
+              </mat-form-field>
+            </td>
+            <td *ngIf="matchtype(column, 'hasid')"
+            style="padding-left: 10px">
+              <app-select-model [model]="retrievevalue(column)" [parameters]="column!.value!.lookupTableConfig!" [columnConfig]="column.value"></app-select-model>
+            </td>
+            <td *ngIf="matchtype(column, 'number')"
+            style="padding-left: 10px">
+            <mat-form-field appearance="fill">
+              <mat-label>{{ column.value.displayName }}</mat-label>
+              <input matInput name="{{ column.key }}" required type="number"
+                (change)="triggerchangefield(column,$event)" [value]="retrievevalue(column)">
+              </mat-form-field>
+            </td>
+
+            <td *ngIf="matchtype(column, 'list')"
+            style="padding-left: 10px">
+              <app-select-model [model]="parseDefinitiveModel()" [parameters]="column!.value!.lookupTableConfig!" [columnConfig]="column.value"></app-select-model>
+          </td>
+          </tr>
+        </table>
+
+
+
+        </form>
+    </div>
+
+
+
+</mat-dialog-content>
+
+<!-- Buttons -->
+<mat-dialog-actions fxLayout fxLayout.xs="column" fxLayoutAlign="end" fxLayoutGap="10px">
+    <button mat-raised-button mat-dialog-close>Annuleren</button>
+    <div class="spacer"></div>
+    <button *ngIf="!isNew && canDelete" mat-stroked-button color="accent" (click)="onDeleteButtonClick()">{{ this.config.retrieve().entityDisplayNameSingular}} verwijderen</button>
+    <button mat-raised-button color="accent" (click)="onSaveButtonClick()">Opslaan</button>
+</mat-dialog-actions>

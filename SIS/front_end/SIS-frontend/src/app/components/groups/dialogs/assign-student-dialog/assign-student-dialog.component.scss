@@ -1,0 +1,10 @@
+.mat-dialog-content {
+    height: 90%;
+    // display: flex;
+    place-content: flex-start !important;
+  }
+  
+  app-students-table {
+    flex: 0 0 100%; /* Let it fill the entire space horizontally */
+  }
+  

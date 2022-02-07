@@ -1,0 +1,13 @@
+.mat-dialog-content {
+    height: 90%;
+    display: flex;
+    place-content: flex-start !important;
+  }
+
+  .studentDetails {
+    width: 50%;
+  }
+  
+  app-groups-list{
+    width: 50%;
+  }

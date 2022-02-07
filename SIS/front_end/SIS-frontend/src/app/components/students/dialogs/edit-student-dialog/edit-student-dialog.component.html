@@ -1,0 +1,90 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+
+<!-- Content -->
+<mat-dialog-content fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px">
+  <div class="studentDetails" fxFlex="45%">
+    <h3 mat-dialog-title>Details</h3>
+
+    <form>
+      <mat-form-field appearance="fill">
+        <mat-label>Voornaam</mat-label>
+        <input matInput name="firstName" required [(ngModel)]="details.firstName" #firstName="ngModel">
+        <mat-error *ngIf="firstName.errors?.required">Voornaam is vereist.</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Achternaam</mat-label>
+        <input matInput name="lastName" required [(ngModel)]="details.lastName" #lastName="ngModel">
+        <mat-error *ngIf="lastName.errors?.required">Achternaam is vereist.</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>E-mail</mat-label>
+        <input matInput name="email" required [(ngModel)]="details.email" #email="ngModel">
+        <mat-error *ngIf="email.errors?.required">E-mail is vereist.</mat-error>
+      </mat-form-field>
+      <!-- <mat-form-field appearance="fill">
+        <mat-label>Adres</mat-label>
+        <input matInput name="address" required [(ngModel)]="student.address" #address="ngModel">
+        <mat-error *ngIf="address.errors?.required">Adres is vereist.</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Huisnummer</mat-label>
+        <input matInput name="housenr" required [(ngModel)]="student.housenr" #housenr="ngModel">
+        <mat-error *ngIf="housenr.errors?.required">Huisnummer is vereist.</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Postcode</mat-label>
+        <input matInput name="postalcode" [formControl]="postalcodeValidator" required [(ngModel)]="student.postalcode" >
+        <mat-error *ngIf="phoneValidator.invalid">{{getErrorMessage('postalcode')}}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Plaats</mat-label>
+        <input matInput name="city" required [(ngModel)]="student.city" #city="ngModel">
+        <mat-error *ngIf="city.errors?.required">Plaats is vereist.</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Telefoonnummer</mat-label>
+        <input matInput name="telephone" [formControl]="phoneValidator" required [(ngModel)]="student.telephone" >
+        <mat-error *ngIf="phoneValidator.invalid">{{getErrorMessage('phone')}}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Mobielnummer</mat-label>
+        <input matInput name="mobilephone" required [(ngModel)]="student.mobilephone" #mobilephone="ngModel">
+        <mat-error *ngIf="mobilephone.errors?.required">Mobielnummer is vereist.</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Geboortedatum</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="student.birthdate" name="birthdate" #birthdate="ngModel">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>E-mail</mat-label>
+        <input matInput name="emailAddress" [formControl]="emailValidator" required [(ngModel)]="student.emailAddress">
+        <mat-error *ngIf="phoneValidator.invalid">{{getErrorMessage('email')}}</mat-error>
+      </mat-form-field> -->
+    </form>
+  </div>
+
+  <div class="groupHistory" [hidden]="isNew">
+    <app-groups-list #myList [models]="details?.groups" [current]="details?.currentGroup" [isEditMode]="true">
+    </app-groups-list>
+
+    <div class="groupManagementButtons">
+      <button mat-stroked-button color="basic" (click)="onUnassignClick()">
+        Klassen ontkoppelen
+      </button>
+      <button mat-stroked-button color="basic" (click)="onAssignClick()">
+        Klassen koppelen
+      </button>
+    </div>
+  </div>
+
+</mat-dialog-content>
+
+<!-- Buttons -->
+<mat-dialog-actions fxLayout fxLayout.xs="column" fxLayoutAlign="end" fxLayoutGap="10px">
+  <button mat-raised-button mat-dialog-close>Annuleren</button>
+  <div fxFlex="auto"></div>
+  <button *ngIf="!isNew" mat-stroked-button color="accent" (click)="onDeleteButtonClick()">Student verwijderen</button>
+  <button mat-raised-button color="accent" (click)="onSaveButtonClick()">Opslaan</button>
+</mat-dialog-actions>

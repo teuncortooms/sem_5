@@ -1,0 +1,23 @@
+.selectbutton
+{
+  float: right;
+}
+
+
+.selectpart
+{
+  width: auto;
+}
+.groupHistory {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.groupManagementButtons {
+  margin-top: 20px;
+
+  * {
+    margin: 10px;
+  }
+}
